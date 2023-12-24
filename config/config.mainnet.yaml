@@ -1,0 +1,19 @@
+urls:
+  api: 'https://api.multiversx.com'
+  swagger:
+    - ''
+api:
+  auth: true
+features:
+  publicApi:
+    enabled: true
+    port: 3000
+  keepAliveAgent:
+    enabled: true
+nativeAuth:
+  maxExpirySeconds:
+  acceptedOrigins:
+rateLimiterSecret:
+keepAliveTimeout:
+  downstream: 61000
+  upstream: 60000
