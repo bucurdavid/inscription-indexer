@@ -10,6 +10,7 @@ import {ApiConfigService} from './common/api-config/api.config.service'
 import {PublicAppModule} from './public.app.module'
 
 import {LoggerInitializer} from '@multiversx/sdk-nestjs-common'
+import {SdkNestjsConfigServiceImpl} from './common/api-config/sdk.nestjs.config.service.impl'
 
 async function bootstrap() {
   const publicApp = await NestFactory.create(PublicAppModule)
@@ -24,10 +25,8 @@ async function bootstrap() {
 
   // if (apiConfigService.getIsAuthActive()) {
   //   publicApp.useGlobalGuards(
-  //     new NativeAuthGuard(
-  //       new SdkNestjsConfigServiceImpl(apiConfigService),
-  //     ),
-  //   );
+  //     new NativeAuthGuard(new SdkNestjsConfigServiceImpl(apiConfigService))
+  //   )
   // }
 
   const httpServer = httpAdapterHostService.httpAdapter.getHttpServer()
@@ -56,7 +55,7 @@ async function bootstrap() {
 
   if (apiConfigService.getIsPublicApiFeatureActive()) {
     //  await publicApp.listen(apiConfigService.getPublicApiFeaturePort());
-    await publicApp.listen(process.env.PORT || 3000, '0.0.0.0') // railway setup
+    await publicApp.listen(process.env.PORT || 3000, '127.0.0.1') // railway setup
   }
 
   const logger = new Logger('Bootstrapper')
