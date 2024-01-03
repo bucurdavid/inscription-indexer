@@ -39,7 +39,7 @@ lerna-debug.log*
 .vscode
 
 # Configs
-config/config.yaml
+# config/config.yaml
 config/config.custom.yaml
 
 
