@@ -6,6 +6,7 @@ import {LoggerInitializer} from '@multiversx/sdk-nestjs-common'
 import {InscriptionDTO} from './dto/inscription.dto'
 import {ApiConfigService} from 'src/common/api-config/api.config.service'
 import axios from 'axios'
+import {SHA256} from 'crypto-js'
 @Injectable()
 export class InscriptionsService {
   private logger = new Logger(InscriptionsService.name)
@@ -82,5 +83,14 @@ export class InscriptionsService {
 
       return inscription
     }
+  }
+
+  async generateInscriptionHash(payload: string): Promise<string> {
+    const payloadHash: string = SHA256(payload).toString()
+    const inscriptionExists = await this.findOneByHash(payloadHash)
+    if (inscriptionExists) {
+      throw new HttpException('Inscription already exists', 400)
+    }
+    return payloadHash
   }
 }

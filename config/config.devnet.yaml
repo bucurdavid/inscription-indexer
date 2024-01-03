@@ -13,6 +13,7 @@ features:
 nativeAuth:
   maxExpirySeconds:
   acceptedOrigins:
+    - 'https://inscriptions-dapp.vercel.app'
 rateLimiterSecret:
 keepAliveTimeout:
   downstream: 61000

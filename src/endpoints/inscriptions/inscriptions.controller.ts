@@ -34,4 +34,20 @@ export class InscriptionsController {
   async processInscription(@Body('txHash') txHash: string) {
     return this.inscriptionService.processInscription(txHash)
   }
+
+  @UseGuards(NativeAuthGuard)
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        payload: {
+          type: 'string',
+        },
+      },
+    },
+  })
+  @Post('/generate')
+  async generateInscription(@Body('payload') payload: string) {
+    return await this.inscriptionService.generateInscriptionHash(payload)
+  }
 }
