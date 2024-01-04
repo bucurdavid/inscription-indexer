@@ -8,7 +8,7 @@ export class Inscription {
   owner: string
   @Column()
   txHash: string
-  @Column()
+  @Column({length: 10000})
   payload: string
   @Column()
   creator: string

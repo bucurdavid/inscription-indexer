@@ -1,4 +1,12 @@
-import {Body, Controller, Get, Post, Query, UseGuards} from '@nestjs/common'
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common'
 import {ApiBody, ApiTags} from '@nestjs/swagger'
 import {InscriptionsService} from './inscriptions.service'
 import {NativeAuthGuard} from '@multiversx/sdk-nestjs-auth'
@@ -9,13 +17,13 @@ export class InscriptionsController {
 
   @UseGuards(NativeAuthGuard)
   @Get('/inscriptions/:hash')
-  async getInscription(@Query('hash') hash: string) {
+  async getInscription(@Param('hash') hash: string) {
     return this.inscriptionService.findOneByHash(hash)
   }
 
   @UseGuards(NativeAuthGuard)
   @Get('/:address/inscriptions')
-  async getInscriptionsByOwner(@Query('address') address: string) {
+  async getInscriptionsByOwner(@Param('address') address: string) {
     return this.inscriptionService.findByOwner(address)
   }
 

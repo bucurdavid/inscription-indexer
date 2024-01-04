@@ -31,12 +31,18 @@ export class InscriptionsService {
     return this.inscriptionRepository.findOne({where: {hash}})
   }
 
-  async findByOwner(owner: string): Promise<Inscription[]> {
-    return this.inscriptionRepository.find({where: {owner}})
+  async findByOwner(address: string): Promise<Inscription[]> {
+    return this.inscriptionRepository.find({
+      where: {owner: address},
+      order: {timestamp: 'DESC'},
+    })
   }
 
-  async findByCreator(creator: string): Promise<Inscription[]> {
-    return this.inscriptionRepository.find({where: {creator}})
+  async findByCreator(address: string): Promise<Inscription[]> {
+    return this.inscriptionRepository.find({
+      where: {creator: address},
+      order: {timestamp: 'DESC'},
+    })
   }
 
   async processInscription(txHash: string): Promise<Inscription> {
