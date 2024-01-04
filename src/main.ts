@@ -55,7 +55,7 @@ async function bootstrap() {
 
   if (apiConfigService.getIsPublicApiFeatureActive()) {
     //  await publicApp.listen(apiConfigService.getPublicApiFeaturePort());
-    await publicApp.listen(process.env.PORT || 3000, '127.0.0.1') // railway setup
+    await publicApp.listen(process.env.PORT || 3000)
   }
 
   const logger = new Logger('Bootstrapper')
