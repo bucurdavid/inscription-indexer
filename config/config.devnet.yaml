@@ -1,7 +1,7 @@
 urls:
   api: 'https://devnet-api.multiversx.com'
   swagger:
-    - 'http://localhost:3000'
+    - 'https://indexer-inscriptions.onrender.com'
 api:
   auth: true
 features:
